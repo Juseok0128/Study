@@ -5,6 +5,7 @@ public class Dealer {
     private String[] suits = {"S", "H", "D", "C"};
     private int numcard;
     public Card[] deck = new Card[52];
+    int cardIndex = -1;
 
     public Dealer() {
         numcard = 13;
@@ -31,7 +32,31 @@ public class Dealer {
         }
     }
 
-    public Card deal(int turn) {
-        return deck[turn];
+    public Card deal() {
+        cardIndex++;
+        return deck[cardIndex];
+    }
+
+    public int score(Card[] playerDeck) {
+        int rank = 0;
+        int[] numCheck = new int[5];
+        int[] numCount = new int[13];
+        String[] suitCheck = new String[5];
+        int[] suitCount = new int[4];
+
+        for (int i = 0; i < playerDeck.length; i++) {
+            numCheck[i] = playerDeck[i].getRank();
+            suitCheck[i] = playerDeck[i].getSuit();
+        }
+        for(int i=0;i<numCheck.length;i++){
+            numCount[numCheck[i]-1]++;
+        }
+//        for(int i=0;i<suitCheck.length;i++){ 여기 하다가 말음
+//            suitCount[]++;
+//        }
+        
+
+
+        return rank;
     }
 }
