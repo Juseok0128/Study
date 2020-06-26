@@ -18,7 +18,7 @@ public class PokerApplication {
         pokerDealer.newDeck();
 
         while (turn < 4) {
-            if(turn<3) {
+            if (turn < 3) {
                 jsKang.getCard(pokerDealer.deal());
                 jsKang.getCard(pokerDealer.deal());
                 com.getCard(pokerDealer.deal());
@@ -27,29 +27,37 @@ public class PokerApplication {
                 jsKang.getCard(pokerDealer.deal());
                 com.getCard(pokerDealer.deal());
             }
-
-            for (int i = 0; i < jsKang.playerCards.length; i++) {
-                System.out.print(jsKang.playerCards[i].getRank());
-                System.out.println(jsKang.playerCards[i].getSuit());
-            }
+            System.out.println("유저가 가진 패");
+            jsKang.printMyCard();
             System.out.println("GO or DIE?");
             goOrDie = sc.next();
-            if(goOrDie.equals("DIE")){
+            if (goOrDie.equals("DIE")) {
                 break;
             }
             turn++;
         }
-        System.out.println("컴퓨터 패 보기");
-        for (int i = 0; i < com.playerCards.length; i++) {
-            System.out.print(com.playerCards[i].getRank());
-            System.out.println(com.playerCards[i].getSuit());
-        }
-        System.out.println("딜러가 섞은덱 확인 테스트");
+        if (turn == 4) {
+            double userScore = pokerDealer.score(jsKang.playerCards);
+            double comScore = pokerDealer.score(com.playerCards);
+            System.out.println("유저가 가진 패");
+            jsKang.printMyCard();
+            System.out.print("최종 족보: ");
+            pokerDealer.printRank(userScore);
 
-        for (int i = 0; i < 52; i++) {   //딜러가 섞은덱 확인 테스트
-            System.out.print(pokerDealer.deck[i].getRank());
-            System.out.print(pokerDealer.deck[i].getSuit());
-            System.out.println();
+            System.out.println("컴퓨터가 가진 패");
+            com.printMyCard();
+            System.out.print("최종 족보: ");
+            pokerDealer.printRank(comScore);
+
+            if (userScore > comScore) {
+                System.out.println("승자: 유저");
+            } else if (userScore == comScore) {
+                System.out.println("무승부");
+            } else {
+                System.out.println("승자: 컴퓨터");
+            }
         }
+
+
     }
 }
