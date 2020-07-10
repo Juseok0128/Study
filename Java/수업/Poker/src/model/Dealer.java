@@ -1,5 +1,7 @@
 package model;
 
+import java.math.BigDecimal;
+
 public class Dealer {
 
     private String[] suits = {"S", "H", "D", "C"};
@@ -13,7 +15,7 @@ public class Dealer {
 
     public void newDeck() {     //딜러가 새로운 덱을 만들고 순서를 랜덤하게 섞음
         int i = 0;
-        Card temp = new Card();
+        Card temp;
         int randomIndex = 0;
         for (int suitsCount = 0; suitsCount < suits.length; suitsCount++) {
             while (numcard != 0) {
@@ -68,21 +70,24 @@ public class Dealer {
         }
         for (int i = numCount.length - 1; i >= 0; i--) {     //트리플
             if (numCount[i] == 3) {
-                rank = 3.01 + (i / (double) 100);
+                BigDecimal tmp = new BigDecimal(String.valueOf(i)).divide(new BigDecimal("100")).add(new BigDecimal("3.01"));
+                rank = tmp.doubleValue();
                 if (rank == 3.01) return 3.14;      //a점수 보정
                 return rank;
             }
         }
         for (int i = numCount.length - 1; i >= 0; i--) {     //원페어
             if (numCount[i] == 2) {
-                rank = 2.01 + (i / (double) 100);
+                BigDecimal tmp = new BigDecimal(String.valueOf(i)).divide(new BigDecimal("100")).add(new BigDecimal("2.01"));
+                rank = tmp.doubleValue();
                 if (rank == 2.01) return 2.14;      //a점수 보정
                 return rank;
             }
         }
         for (int i = numCount.length - 1; i >= 0; i--) {     //탑
             if (numCount[i] == 1) {
-                rank = 1.01 + (i / (double) 100);
+                BigDecimal tmp = new BigDecimal(String.valueOf(i)).divide(new BigDecimal("100")).add(new BigDecimal("1.01"));
+                rank = tmp.doubleValue();
                 if (rank == 1.01) return 1.14;      //a점수 보정
                 return rank;
             }
@@ -115,7 +120,8 @@ public class Dealer {
                 System.out.println("J트리플");
                 return;
             } else {
-                printRank = (int) ((rank - 3) * 100);
+                BigDecimal tmp = new BigDecimal(String.valueOf(rank)).subtract(new BigDecimal("3")).multiply(new BigDecimal("100"));
+                printRank = tmp.intValue();
                 System.out.println(printRank + "트리플");
                 return;
             }
@@ -134,7 +140,8 @@ public class Dealer {
                 System.out.println("J원페어");
                 return;
             } else {
-                printRank = (int) ((rank - 2) * 100);
+                BigDecimal tmp = new BigDecimal(String.valueOf(rank)).subtract(new BigDecimal("2")).multiply(new BigDecimal("100"));
+                printRank = tmp.intValue();
                 System.out.println(printRank + "원페어");
                 return;
             }
@@ -153,7 +160,8 @@ public class Dealer {
                 System.out.println("J탑");
                 return;
             } else {
-                printRank = (int) ((rank - 1) * 100);
+                BigDecimal tmp = new BigDecimal(String.valueOf(rank)).subtract(new BigDecimal("1")).multiply(new BigDecimal("100"));
+                printRank = tmp.intValue();
                 System.out.println(printRank + "탑");
                 return;
             }
