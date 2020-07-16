@@ -87,3 +87,45 @@ class Point3D {
 }
 ```
 
+### 9-3
+
+```java
+import java.util.InputMismatchException;
+import java.util.Objects;
+import java.util.Scanner;
+
+public class Study2 {
+    public static void main(String[] args) {
+        String fullPath = "c:\\jdk1.8\\work\\PathSeparateTest.java";
+        String path = "";
+        String fileName = "";
+
+        path = fullPath.substring(0,14);
+        fileName = fullPath.substring(15);
+        System.out.println("fullPath:"+fullPath);
+        System.out.println("path:"+path);
+        System.out.println("fileName:"+fileName);
+    }
+}
+```
+
+### 9-4
+
+```java
+public class Study2 {
+    static void printGraph(int[] arr, char ch) {
+        for (int a : arr) {
+            for (int i = 0; i < a; i++) {
+                System.out.print(ch);
+            }
+            System.out.print(a);
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        printGraph(new int[]{3, 7, 1, 4}, '*');
+    }
+}
+```
+
