@@ -110,14 +110,17 @@ public class Dealer {
         if (rank > 3) {
             rank = new BigDecimal(String.valueOf(rank)).subtract(new BigDecimal("3")).doubleValue();
             System.out.println(this.getScoreMark(rank)+"트리플");
+            return;
         }
         if (rank > 2) {
             rank = new BigDecimal(String.valueOf(rank)).subtract(new BigDecimal("2")).doubleValue();
             System.out.println(this.getScoreMark(rank)+"원페어");
+            return;
         }
         if (rank > 1) {
             rank = new BigDecimal(String.valueOf(rank)).subtract(new BigDecimal("1")).doubleValue();
             System.out.println(this.getScoreMark(rank)+"탑");
+            return;
         }
         System.out.println("해당하는 족보가 없습니다.");
     }
